@@ -38,7 +38,7 @@ $$
 m_Z = \dfrac{4\pi}{\mu_0} R^3 g_1^0
 $$
 
-O momento pode ser convertido para coordenadas esféricas e providenciar a longitude e latitude do polo geomagnético. 
+O momento pode ser convertido para coordenadas esféricas e providenciar a longitude e latitude do polo geomagnético.
 
 Esse problema pode ser decomposto em diversas etapas computacionais. Melhor ainda, cada etapa pode ser encapsulada em 1 ou mais funções que podem ser testadas independentemente. **Ao final dessa disciplina, teremos funções e programas de linha de comando que serão capazes de calcular o campo geomagnético em qualquer lugar da Terra e em qualquer data entre 1900 e o presente.**
 
