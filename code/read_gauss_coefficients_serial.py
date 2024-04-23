@@ -1,5 +1,5 @@
 """
-Read the Gauss coefficients from the USGS file. Don't use a function.
+Week 1: Read the Gauss coefficients from the USGS file. Don't use a function.
 """
 
 h = {}

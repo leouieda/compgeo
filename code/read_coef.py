@@ -1,5 +1,7 @@
 """
-Function to read the Gauss coefficients along with some tests.
+Week 2: Creating functions and testing them
+
+Make a function out of the coefficient reading code from last week.
 """
 import pathlib
 import pytest
@@ -7,6 +9,7 @@ import pytest
 
 def read_gauss_coeffs(path):
     """
+    Read Gauss coefficients from the NOAA IGRF data file
     """
     if not pathlib.Path(path).exists():
         raise IOError(f"Gauss coefficient file '{path}' not found.")
@@ -41,10 +44,6 @@ def read_gauss_coeffs(path):
                 for coef in parts[3:-1]:
                     h[degree][order].append(float(coef))
                 h_sv[degree][order] = float(parts[-1])
-    # Add the zero order h coefficients
-    for degree in h:
-        h[degree][0] = [0] * len(years)
-        h_sv[degree][0] = 0
     return g, h, g_sv, h_sv, years
 
 
@@ -55,6 +54,23 @@ def test_read_all_degrees():
     assert sorted(h.keys()) == list(range(1, 14))
     assert sorted(g_sv.keys()) == list(range(1, 14))
     assert sorted(h_sv.keys()) == list(range(1, 14))
+
+
+def test_read_all_orders():
+    "Check if all orders were read"
+    g, h, g_sv, h_sv, years = read_gauss_coeffs("igrf13coeffs.txt")
+    for degree in g:
+        assert sorted(g[degree].keys()) == list(range(0, degree + 1))
+        assert sorted(g_sv[degree].keys()) == list(range(0, degree + 1))
+    for degree in h:
+        assert sorted(h[degree].keys()) == list(range(1, degree + 1))
+        assert sorted(h_sv[degree].keys()) == list(range(1, degree + 1))
+
+
+def test_years():
+    "Check that all years were read"
+    g, h, g_sv, h_sv, years = read_gauss_coeffs("igrf13coeffs.txt")
+    assert years == list(range(1900, 2025, 5))
 
 
 def test_file_not_found():
