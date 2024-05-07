@@ -28,4 +28,13 @@ def associated_legendre_functions(x, n_max):
     return p
 
 
-
+def test_legendre_functions():
+    "Check if the first few degrees match analytical expressions"
+    angle = np.radians(45)
+    x = np.cos(angle)
+    p = associated_legendre_functions(x, 3)
+    np.testing.assert_allclose(x, p[1][0])
+    np.testing.assert_allclose(-np.sin(angle), p[1][1])
+    np.testing.assert_allclose(1/2 * (3 * x**2 - 1), p[2][0])
+    np.testing.assert_allclose(-3 * x * np.sin(angle), p[2][1])
+    np.testing.assert_allclose(3 * (1 - x**2), p[2][2])
