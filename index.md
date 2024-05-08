@@ -1,4 +1,4 @@
-**Professores:** [Leonardo Uieda](http://www.leouieda.com/) e Eder Molina
+*^a*Professores:** [Leonardo Uieda](http://www.leouieda.com/) e Eder Molina
 
 ## Conteúdo da parte em Python
 
@@ -39,15 +39,15 @@ O momento pode ser convertido para coordenadas esféricas e providenciar a longi
 As [funções associadas de Legendre](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) podem ser calculadas com as fórmulas recursivas:
 
 $$
-P_n^m (x) = \dfrac{(2n - 1) x P_{n-1}^m - (n + m - 1)P_{n-2}^m}{n - m}\quad \text{para} m < n - 1
+P_n^m (x) = \dfrac{(2n - 1) x P_{n-1}^m - (n + m - 1)P_{n-2}^m}{n - m}\quad \text{para}\ m < n - 1
 $$
 
 $$
-P_n^m (x) = \dfrac{-\sqrt{1 - x^2}P_n^{m+1} - \sqrt{1-x^2}(n + m)(n - m + 1)P_n^{m-1}}{2mx}\quad \text{para} m = n - 1
+P_n^m (x) = \dfrac{-\sqrt{1 - x^2}P_n^{m+1} - \sqrt{1-x^2}(n + m)(n - m + 1)P_n^{m-1}}{2mx}\quad \text{para}\ m = n - 1
 $$
 
 $$
-P_n^m (x) = -(2n -1)\sqrt{1-x^2}P_{n-1}^{m-1} \quad \text{para} m = n
+P_n^m (x) = -(2n -1)\sqrt{1-x^2}P_{n-1}^{m-1} \quad \text{para}\ m = n
 $$
 
 Sabendo os valores iniciais: $P_0^0 = 1$, $P_1^0 = x$, $P_1^1=-\sqrt{1 - x^2}$
@@ -55,11 +55,11 @@ Sabendo os valores iniciais: $P_0^0 = 1$, $P_1^0 = x$, $P_1^1=-\sqrt{1 - x^2}$
 As derivadas $\frac{\partial P_n^m}{\partial x} = P_n^m'$ também são calculadas assim:
 
 $$
-\dfrac{\partial P_n^m}{\partial x} (x) = \dfrac{n x P_n^m - (n + m) P_{n-1}^m}{x^2 - 1} \quad \text{para} m \neq n
+\dfrac{\partial P_n^m}{\partial x} (x) = \dfrac{n x P_n^m - (n + m) P_{n-1}^m}{x^2 - 1} \quad \text{para}\ m \neq n
 $$
 
 $$
-\dfrac{\partial P_n^m}{\partial x} (x) = \dfrac{-(n + m)(n - m + 1)\sqrt{1 - x^2} P_n^{m-1} - m x P_n^m}{x^2 - 1} \quad \text{para} m = n
+\dfrac{\partial P_n^m}{\partial x} (x) = \dfrac{-(n + m)(n - m + 1)\sqrt{1 - x^2} P_n^{m-1} - m x P_n^m}{x^2 - 1} \quad \text{para}\ m = n
 $$
 
 com os valores iniciais: $P_0^0'=0$, $P_1^0'=1$, $P_1^1'=\frac{x}{\sqrt{1 - x^2}}$.
