@@ -52,7 +52,7 @@ $$
 
 Sabendo os valores iniciais: $P_0^0 = 1$, $P_1^0 = x$, $P_1^1=-\sqrt{1 - x^2}$
 
-As derivadas $\frac{\partial P_n^m}{\partial x} = P_n^m'$ também são calculadas assim:
+As derivadas $\partial P_n^m / \partial x$ também são calculadas assim:
 
 $$
 \dfrac{\partial P_n^m}{\partial x} (x) = \dfrac{n x P_n^m - (n + m) P_{n-1}^m}{x^2 - 1} \quad \text{para}\ m \neq n
@@ -62,7 +62,7 @@ $$
 \dfrac{\partial P_n^m}{\partial x} (x) = \dfrac{-(n + m)(n - m + 1)\sqrt{1 - x^2} P_n^{m-1} - m x P_n^m}{x^2 - 1} \quad \text{para}\ m = n
 $$
 
-com os valores iniciais: $P_0^0'=0$, $P_1^0'=1$, $P_1^1'=\frac{x}{\sqrt{1 - x^2}}$.
+com os valores iniciais: $\partial P_0^0 / \partial x=0$, $\partial P_1^0 / \partial x=1$, $\partial P_1^1 / \partial x=\frac{x}{\sqrt{1 - x^2}}$.
 
 Nas aplicações em geomagnetismo, as funções de Legendre e suas derivadas são normalizadas com a normalização de Schmidt multiplicando-os pelo fator:
 
