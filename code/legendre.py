@@ -63,9 +63,10 @@ def schmidt_normalization(n_max):
     for n in range(n_max + 1):
         s[n] = {}
         for m in range(n + 1):
-            delta = 0
             if m == 0:
                 delta = 1
+            else:
+                delta = 0
             s[n][m] = np.sqrt(
                 (2 - delta) * math.factorial(n - m) / math.factorial(n + m)
             )
