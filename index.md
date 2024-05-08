@@ -70,7 +70,7 @@ $$
 S_n^m = \sqrt{(2 - \delta_{m,0})\dfrac{(n - m)!}{(n + m)!}}
 $$
 
-na qual $\delta_(m,0)$ é o [delta de Kronecker](https://en.wikipedia.org/wiki/Kronecker_delta).
+na qual $\delta_{m,0}$ é o [delta de Kronecker](https://en.wikipedia.org/wiki/Kronecker_delta).
 
 Esse problema pode ser decomposto em diversas etapas computacionais. Melhor ainda, cada etapa pode ser encapsulada em 1 ou mais funções que podem ser testadas independentemente. **Ao final dessa disciplina, teremos funções e programas de linha de comando que serão capazes de calcular o campo geomagnético em qualquer lugar da Terra e em qualquer data entre 1900 e o presente.**
 
