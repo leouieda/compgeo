@@ -36,6 +36,42 @@ $$
 
 O momento pode ser convertido para coordenadas esféricas e providenciar a longitude e latitude do polo geomagnético.
 
+As [funções associadas de Legendre](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) podem ser calculadas com as fórmulas recursivas:
+
+$$
+P_n^m (x) = \dfrac{(2n - 1) x P_{n-1}^m - (n + m - 1)P_{n-2}^m}{n - m}\quad \text{para} m < n - 1
+$$
+
+$$
+P_n^m (x) = \dfrac{-\sqrt{1 - x^2}P_n^{m+1} - \sqrt{1-x^2}(n + m)(n - m + 1)P_n^{m-1}}{2mx}\quad \text{para} m = n - 1
+$$
+
+$$
+P_n^m (x) = -(2n -1)\sqrt{1-x^2}P_{n-1}^{m-1} \quad \text{para} m = n
+$$
+
+Sabendo os valores iniciais: $P_0^0 = 1$, $P_1^0 = x$, $P_1^1=-\sqrt{1 - x^2}$
+
+As derivadas $\frac{\partial P_n^m}{\partial x} = P_n^m'$ também são calculadas assim:
+
+$$
+\dfrac{\partial P_n^m}{\partial x} (x) = \dfrac{n x P_n^m - (n + m) P_{n-1}^m}{x^2 - 1} \quad \text{para} m \neq n
+$$
+
+$$
+\dfrac{\partial P_n^m}{\partial x} (x) = \dfrac{-(n + m)(n - m + 1)\sqrt{1 - x^2} P_n^{m-1} - m x P_n^m}{x^2 - 1} \quad \text{para} m = n
+$$
+
+com os valores iniciais: $P_0^0'=0$, $P_1^0'=1$, $P_1^1'=\frac{x}{\sqrt{1 - x^2}}$.
+
+Nas aplicações em geomagnetismo, as funções de Legendre e suas derivadas são normalizadas com a normalização de Schmidt multiplicando-os pelo fator:
+
+$$
+S_n^m = \sqrt{(2 - \delta_{m,0)\dfrac{(n - m)!}{(n + m)!}}
+$$
+
+na qual $\delta_(m,0)$ é o [delta de Kronecker](https://en.wikipedia.org/wiki/Kronecker_delta).
+
 Esse problema pode ser decomposto em diversas etapas computacionais. Melhor ainda, cada etapa pode ser encapsulada em 1 ou mais funções que podem ser testadas independentemente. **Ao final dessa disciplina, teremos funções e programas de linha de comando que serão capazes de calcular o campo geomagnético em qualquer lugar da Terra e em qualquer data entre 1900 e o presente.**
 
 
