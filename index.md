@@ -88,6 +88,6 @@ Esse problema pode ser decomposto em diversas etapas computacionais. Melhor aind
 | 10     | As tais das funções de Legendre | Função que retorna as funções associadas de Legendre |
 | 11     | Calculando o campo magnético | Função que calculam Be, Bn, Bu para uma data |
 | 12     | Malhas regulares em Python / xarray + netCDF | Função que produz malhas regulares do campo magnético |
-| 13     | Optimização e perfilagem de código / acelerando as funções de Legendre com numba | Função que calcula as funções de Legendre de forma mais rápida |
-| 14     | Programas de linha de comando em Python | Transformação das funções em um programa de linha de comando |
+| 13     | Programas de linha de comando em Python | Transformação das funções em um programa de linha de comando |
+| 14     | Optimização e perfilagem de código / acelerando as funções de Legendre com numba | Função que calcula as funções de Legendre de forma mais rápida |
 | 15     | Livre |
