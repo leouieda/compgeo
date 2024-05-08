@@ -7,15 +7,15 @@ Nesta parte da matéria aprenderemos técnicas de engenharia de software e progr
 O IGRF é um modelo de harmônicos esféricos. Com esses modules, podemos calcular as 3 componentes do campo geomagnético em qualquer local da Terra através de uma tabela de números chamados **coeficientes de Gauss**. Para um determinado conjunto de coeficientes de Gauss $g_n^m$ e $h_n^m$, as 3 componentes do campo geomagnético são:
 
 $$
-B_n(r, \theta, \lambda) = -\dfrac{R\sin\theta}{r} \sum\limits_{n=0}^{N}\sum\limits_{m=0}^{n} \left(\dfrac{R}{r}\right)^{n+1} [ g_n^m \cos m\lambda + h_n^m \sin m\lambda ] \dfrac{\partial P_n^m(\cos\theta)}{\partial \cos\theta}
+B_n(r, \theta, \lambda) = -\dfrac{R\sin\theta}{r} \sum\limits_{n=1}^{N}\sum\limits_{m=0}^{n} \left(\dfrac{R}{r}\right)^{n+1} [ g_n^m \cos m\lambda + h_n^m \sin m\lambda ] \dfrac{\partial P_n^m(\cos\theta)}{\partial \cos\theta}
 $$
 
 $$
-B_e(r, \theta, \lambda) = -\dfrac{R}{r\sin\theta} \sum\limits_{n=0}^{N}\sum\limits_{m=0}^{n} \left(\dfrac{R}{r}\right)^{n+1} [ -m g_n^m \sin m\lambda + m h_n^m \cos m\lambda ] P_n^m(\cos\theta)
+B_e(r, \theta, \lambda) = -\dfrac{R}{r\sin\theta} \sum\limits_{n=1}^{N}\sum\limits_{m=0}^{n} \left(\dfrac{R}{r}\right)^{n+1} [ -m g_n^m \sin m\lambda + m h_n^m \cos m\lambda ] P_n^m(\cos\theta)
 $$
 
 $$
-B_r(r, \theta, \lambda) = \sum\limits_{n=0}^{N}\sum\limits_{m=0}^{n} (n + 1)\left(\dfrac{R}{r}\right)^{n+2} [ g_n^m \cos m\lambda + h_n^m \sin m\lambda ] P_n^m(\cos\theta)
+B_r(r, \theta, \lambda) = \sum\limits_{n=1}^{N}\sum\limits_{m=0}^{n} (n + 1)\left(\dfrac{R}{r}\right)^{n+2} [ g_n^m \cos m\lambda + h_n^m \sin m\lambda ] P_n^m(\cos\theta)
 $$
 
 em que $r$ é a direção radial, $\theta$ é a colatitude geocêntrica, $\lambda$ é a longitude, $n$ é o grau, $m$ é a ordem, $R$ é o raio médio da Terra e $P_n^m(x)$ são [funções associadas de Legendre](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials).
