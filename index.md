@@ -67,7 +67,7 @@ com os valores iniciais: $\partial P_0^0 / \partial x=0$, $\partial P_1^0 / \par
 Nas aplicações em geomagnetismo, as funções de Legendre e suas derivadas são normalizadas com a normalização de Schmidt multiplicando-os pelo fator:
 
 $$
-S_n^m = \sqrt{(2 - \delta_{m,0)\dfrac{(n - m)!}{(n + m)!}}
+S_n^m = \sqrt{(2 - \delta_{m,0})\dfrac{(n - m)!}{(n + m)!}}
 $$
 
 na qual $\delta_(m,0)$ é o [delta de Kronecker](https://en.wikipedia.org/wiki/Kronecker_delta).
