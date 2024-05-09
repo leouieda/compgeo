@@ -16,7 +16,7 @@ def associated_legendre_functions(x, n_max):
     p[0][0] = 1
     p[1] = {}
     p[1][0] = x
-    p[1][1] = -sqrt_x
+    p[1][1] = sqrt_x
     for n in range(2, n_max + 1):
         p[n] = {}
         for m in range(0, n - 1):
@@ -24,11 +24,9 @@ def associated_legendre_functions(x, n_max):
                 n - m
             ) * p[n - 2][m]
         # Do the diagonal first because we need it for m = n - 1
-        p[n][n] = -(2 * n - 1) * sqrt_x * p[n - 1][n - 1]
+        p[n][n] = (2 * n - 1) * sqrt_x * p[n - 1][n - 1]
         m = n - 1
-        p[n][m] = (
-            -sqrt_x * p[n][m + 1] - sqrt_x * (n + m) * (n - m + 1) * p[n][m - 1]
-        ) / (2 * m * x)
+        p[n][m] = (2 * n - 1) / (n - m) * x * p[n - 1][m]
     return p
 
 
@@ -43,7 +41,7 @@ def associated_legendre_functions_derivative(p):
     dp[0][0] = 0
     dp[1] = {}
     dp[1][0] = 1
-    dp[1][1] = x / sqrt_x
+    dp[1][1] = -x / sqrt_x
     for n in range(2, len(p)):
         dp[n] = {}
         for m in range(0, n):
@@ -64,12 +62,11 @@ def schmidt_normalization(n_max):
         s[n] = {}
         for m in range(n + 1):
             if m == 0:
-                delta = 1
+                s[n][m] = 1
             else:
-                delta = 0
-            s[n][m] = np.sqrt(
-                (2 - delta) * math.factorial(n - m) / math.factorial(n + m)
-            )
+                s[n][m] = np.sqrt(
+                    2 * math.factorial(n - m) / math.factorial(n + m)
+                )
     return s
 
 
@@ -141,3 +138,14 @@ def test_schmidt():
     np.testing.assert_allclose(1, s[2][0])
     np.testing.assert_allclose(np.sqrt(1/3), s[2][1])
     np.testing.assert_allclose(np.sqrt(1/12), s[2][2])
+
+
+if __name__ == "__main__":
+    import scipy.special
+    n = 13
+    x = 0.5
+    p, dp = scipy.special.lpmn(n, n, x)
+    print(dp.T[-1])
+    p = associated_legendre_functions(x, n)
+    dp = associated_legendre_functions_derivative(p)
+    print(dp[13])

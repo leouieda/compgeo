@@ -21,11 +21,12 @@ def coef_date(date, g, h, g_sv, h_sv, years):
         )
 
     index = int((date.year - years[0]) // 5)
-    timedelta = date - datetime.datetime.fromisoformat(f"{int(years[index])}-01-01T00:00:00")
+    timedelta = date - datetime.datetime(int(years[index]), 1, 1)
     epoch = (
         datetime.datetime(year=int(years[index]) + 5, month=1, day=1)
         - datetime.datetime(year=int(years[index]), month=1, day=1)
     )
+    year_in_seconds = (365.25 * 24 * 60 * 60)
 
     g_year = {}
     h_year = {}
@@ -35,7 +36,7 @@ def coef_date(date, g, h, g_sv, h_sv, years):
             if index < len(years) - 1:
                 secular_variation = (g[n][m][index + 1] - g[n][m][index]) / epoch.total_seconds()
             else:
-                secular_variation = g_sv[n][m] / epoch.total_seconds()
+                secular_variation = g_sv[n][m] / year_in_seconds
             g_year[n][m] = g[n][m][index] + timedelta.total_seconds() * secular_variation
     for n in h:
         h_year[n] = {}
@@ -43,7 +44,7 @@ def coef_date(date, g, h, g_sv, h_sv, years):
             if index < len(years) - 1:
                 secular_variation = (h[n][m][index + 1] - h[n][m][index]) / epoch.total_seconds()
             else:
-                secular_variation = h_sv[n][m] / epoch.total_seconds()
+                secular_variation = h_sv[n][m] / year_in_seconds
             h_year[n][m] = h[n][m][index] + timedelta.total_seconds() * secular_variation
     return g_year, h_year
 
@@ -60,25 +61,16 @@ def test_invalid_year():
 def test_interpolation():
     "Check that calculating on or close to an epoch yields the right coefficients"
     g, h, g_sv, h_sv, years = read_coef.read_gauss_coeffs("igrf13coeffs.txt")
-    g_date, h_date = coef_date(
-        datetime.datetime.fromisoformat("1990-01-01T00:00:00"), g, h, g_sv, h_sv, years,
-    )
-    index = (1990 - 1900) // 5
-    for n in g_date:
-        for m in g_date[n]:
-            np.testing.assert_allclose(g_date[n][m], g[n][m][index])
-    for n in h_date:
-        for m in h_date[n]:
-            np.testing.assert_allclose(h_date[n][m], h[n][m][index])
-    g_date, h_date = coef_date(
-        datetime.datetime.fromisoformat("1989-12-31T23:59:59"), g, h, g_sv, h_sv, years,
-    )
-    for n in g_date:
-        for m in g_date[n]:
-            np.testing.assert_allclose(g[n][m][index], g_date[n][m], atol=1e-7)
-    for n in h_date:
-        for m in h_date[n]:
-            np.testing.assert_allclose(h[n][m][index], h_date[n][m], atol=1e-7)
+    for i, year in enumerate(years):
+        g_date, h_date = coef_date(
+            datetime.datetime(int(year), 1, 1, 0, 1, 0), g, h, g_sv, h_sv, years,
+        )
+        for n in g_date:
+            for m in g_date[n]:
+                np.testing.assert_allclose(g_date[n][m], g[n][m][i], atol=0.001)
+        for n in h_date:
+            for m in h_date[n]:
+                np.testing.assert_allclose(h_date[n][m], h[n][m][i], atol=0.001)
 
 
 if __name__ == "__main__":
