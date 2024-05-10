@@ -40,11 +40,7 @@ def igrf(longitude, latitude, radius, date):
             be += r_frac * (-m * g[n][m] * sin + m * h[n][m] * cos) * s[n][m] * p[n][m]
             bn += r_frac * (g[n][m] * cos + h[n][m] * sin) * s[n][m] * dp[n][m]
             br += (n + 1) * r_frac * (g[n][m] * cos + h[n][m] * sin) * s[n][m] * p[n][m]
-            print(s[n][m] * p[n][m])
-
     be *= -1 / np.sin(colatitude)
-    bn *= np.sin(colatitude)
-
     return be, bn, br
 
 
